@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFA Pack Opener</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f3f3f3;
+    }
+    #playerImage {
+      width: 200px;
+      margin-top: 20px;
+      display: none;
+    }
+    h1, h2 {
+      margin: 0;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>FIFA Pack Opener</h1>
+  <h2 id="country">Opening Pack...</h2>
+  <img id="playerImage" src="" alt="Player Image">
+  <h2 id="playerName"></h2>
+
+  <script>
+    const players = [
+      {
+        name: "Lionel Messi",
+        country: "Argentina",
+        club: "Inter Miami",
+        position: "RW",
+        image: "https://cdn.sofifa.net/players/158/023/24_120.png",
+      },
+      {
+        name: "Cristiano Ronaldo",
+        country: "Portugal",
+        club: "Al Nassr",
+        position: "ST",
+        image: "https://cdn.sofifa.net/players/020/801/24_120.png",
+      },
+      {
+        name: "Kylian Mbappé",
+        country: "France",
+        club: "Paris SG",
+        position: "ST",
+        image: "https://cdn.sofifa.net/players/231/747/24_120.png",
+      }
+    ];
+
+    const countryElement = document.getElementById("country");
+    const playerImageElement = document.getElementById("playerImage");
+    const playerNameElement = document.getElementById("playerName");
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function openPack() {
+      const player = players[Math.floor(Math.random() * players.length)];
+
+      countryElement.innerText = "Country: " + player.country;
+      await delay(1000);
+      countryElement.innerText = "Club: " + player.club;
+      await delay(1000);
+      countryElement.innerText = "Position: " + player.position;
+      await delay(1000);
+
+      countryElement.innerText = "";
+      playerImageElement.src = player.image;
+      playerImageElement.style.display = "block";
+      playerNameElement.innerText = player.name;
+      playerNameElement.style.display = "block";
+    }
+
+    openPack();
+  </script>
+</body>
+</html>
